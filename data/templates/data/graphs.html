@@ -1,0 +1,86 @@
+{% extends 'data/base.html' %}
+
+{% block content %}
+{% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+
+
+<div class="container-fluid">
+    <div class=".row">
+        <h1>Autism Data</h1>
+        <h3>The following graphs reflect data from a dataset provided by Dr Fadi Fayez Thabtah and published on Kaggle.com.</h3>
+    </div>
+    <hr />
+    <div class=".row">
+        <div class="col-md-6">
+            <canvas id="genderPieChart" width="500" height="500"></canvas>
+            <canvas id="familyPieChart" width="500" height="500"></canvas>
+            <canvas id="ageBarChart" width="1000" height="600"></canvas>
+        </div>
+    </div>
+    <script>  new Chart(document.getElementById("genderPieChart"), {
+            type: "pie",
+            data: {
+                labels: ["Males (x=534)", "Females (x=194)"],
+                datasets: [
+                    {
+                        label: "Autism by gender",
+                        backgroundColor: ["#9fd99c", "#e22880"],
+                        data: [534, 194]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    text: "Autism in infants and toddlers by gender",
+                    display: true
+                }
+            }
+        });
+      
+    
+        new Chart(document.getElementById("familyPieChart"), {
+
+            type: "pie",
+            data: {
+                labels: ["Autism in Family (x=115)", "No Autism in Family (x=613)"],
+                datasets: [
+                    {
+                        label: "Autism in other family members",
+                        backgroundColor: ["#85a7ab", "#81508f"],
+                        data: [115, 613]
+                    }
+                ]
+            },
+            options: {
+            title: {
+                    text: "Reported family members with autism in autistic population",
+                    display: true
+                    }
+            }
+        }); 
+        new Chart(document.getElementById("ageBarChart"), {
+            type: 'bar',
+            data: {
+                labels: ["<=18 mo (x=87)", "19-24 mo (x=137)", "25-30 mo (x=164)", "31-36 mo (x=328)"],
+                datasets: [
+                    {
+                        label: "Age at diagnosis (months)",
+                        backgroundColor: ["#e23871", "#518770", "#875176", "#aaafff"],
+                        data: [87, 137, 164, 328]
+                    }
+                ]
+            },
+            options: {
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: 'Infant/Toddler age at time of autism diagnosis'
+                }
+            }
+        });
+        </script>
+        <h4>Source:</h4>
+        <h5>Autism screening data for toddlers. (2018, July 23). Kaggle. https://www.kaggle.com/datasets/fabdelja/autism-screening-for-toddlers</h5>
+</div>
+{% endblock %}

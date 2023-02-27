@@ -1,0 +1,101 @@
+{% extends 'data/base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    .btn-primary{
+        background-color:#8f1d1d
+    }
+</style>
+<div class="container ">
+    <div class="card">
+        <h1>AI-Assisted Autism Screener</h1>
+        <h2>Thank you for visiting.</h2>
+        <div class="row">
+        <div class="col"><img src="dataproject/static/whiteheartwithlittleredpuzzleheart.jpg">
+        </div>
+            <div class="col"><h4>Autism spectrum disorder (ASD) is a neurodevelopmental condition that affects an individual's sensory, language,
+            and social processing abilities. Symptoms of ASD can vary widely from person to person and range from
+            barely noticeable to extremely challenging, which is why people studying and working with those
+            affected by ASD began to refer to ASD as a spectrum. Most children with ASD will show symptoms by 12-18 months--often earlier. Thanks to 
+            increased awareness in the past 20 years, infants and children are being diagnosed earlier
+            now than ever before. This is good news, because early diagnosis and intervention can mitigate
+            some of the difficulties faced by people with ASD and their families; early, high-quality intervention
+            can make the difference between needing care for the rest of one's life and being an independent,
+            productive adult. Even individuals with the most severe of symptoms can benefit from therapy to 
+            help them communicate their needs, perform self-care activities, and ensure their own safety and 
+            well-being.</div></div></div></h4>
+        
+            <div class="row">
+                <div class="col"><h4>The following questions have been adapted from the Q-CHAT-10, a well-known autism screener for infants, 
+            toddlers, and young children. If you have concerns that your infant or toddler may not be developing typically, 
+            this short survey may help you decide whether to seek further medical evaluation for your child. A point/threshold 
+            system is usually used to score and obtain results for this test; here, however, a machine 
+            learning model has been developed to analyze your responses and produce a recommendation 
+            based on data from more than 1,000 infants and toddlers who have been screened in the past. 
+            Please keep in mind that it's <strong>never</strong> wrong to discuss your concerns with your child's
+            physician, even if your results here don't advise you to do so.
+        </h4></div>
+        <div class="col"><img src="dataproject/static/redheartonewhitepuzzlepiece.jpg"></div></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col"><img src="dataproject/static/heart3dwithpiecesinside.jpg">
+        <img src="dataproject/static/unfinishedredpuzzle.jpg">
+        <img src="dataproject/static/warmcolorsheartpuzzle.jpg"></div>
+        <div class="col">
+            <form method='post' action=''>
+                {% csrf_token %}
+                {% for q in questions %}
+                <div class="form-group">
+                    <label for="question">{{q.question}}</label>
+                </div>
+                <div class="form-check" align-left>
+                    <div class="form-check" align-left>
+                        <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1"
+                            value="0" align-left>
+                        <label class="form-check-label" for="gridRadios1">
+                            {{q.A1}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2"
+                            value="0" align-left>
+                        <label class="form-check-label" for="gridRadios2">
+                            {{q.A2}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1"
+                            value="1" align-left>
+                        <label class="form-check-label" for="gridRadios1">
+                            {{q.A3}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2"
+                            value="1" align-left>
+                        <label class="form-check-label" for="gridRadios2">
+                            {{q.A4}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2"
+                            value="1" align-left>
+                        <label class="form-check-label" for="gridRadios1">
+                            {{q.A5}}
+                        </label>
+                        <br>
+                    </div>
+                </div>
+                {% endfor %}
+                <br><div class="btn">
+                <button type="submit" class="btn btn-primary">Submit</button></div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
